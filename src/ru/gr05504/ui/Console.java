@@ -1,5 +1,8 @@
 package ru.gr05504.ui;
 
+import ru.gr05504.BookFormState;
+import ru.gr05504.domain.Book;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -65,8 +68,7 @@ public class Console implements BookView {
         System.out.println(sb);
     }
 
-    @Override
-    public void showError(String message) {
+    private void showError(String message) {
         System.err.println(message);
     }
 

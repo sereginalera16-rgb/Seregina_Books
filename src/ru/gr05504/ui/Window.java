@@ -1,5 +1,10 @@
 package ru.gr05504.ui;
 
+import ru.gr05504.AddBookCommand;
+import ru.gr05504.BookFormState;
+import ru.gr05504.Command;
+import ru.gr05504.domain.Book;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -13,10 +18,13 @@ public class Window extends JFrame implements BookView {
     private JTextField tfAdditional = new JTextField();
     JButton btnAdd = new JButton("Добавить");
     private JTextArea taBooks = new JTextArea();
+    private final JLabel lblStatus = new JLabel();
     private final BookController controller;
+    private final Command addCommand;
 
     public Window(BookController controller){
         this.controller = controller;
+        addCommand = new AddBookCommand(controller);
 
         setTitle("Книги");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -28,7 +36,7 @@ public class Window extends JFrame implements BookView {
         JLabel lblYear = new JLabel("Год издания:");
         JLabel lblAdditional = new JLabel("Допинформация:");
 
-        btnAdd.addActionListener(e -> {controller.addBookClicked();});
+        btnAdd.addActionListener(e -> {addCommand.execute();});
         tfAuthor.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
@@ -95,7 +103,9 @@ public class Window extends JFrame implements BookView {
 
 
         add(topPanel, BorderLayout.NORTH);
+        taBooks.setEditable(false);
         add(new JScrollPane(taBooks), BorderLayout.CENTER);
+        add(lblStatus, BorderLayout.SOUTH);
         pack();
         setLocationRelativeTo(null);
     }
@@ -148,14 +158,11 @@ public class Window extends JFrame implements BookView {
     }
 
     @Override
-    public void showError(String message) {
-        JOptionPane.showMessageDialog(this, message);
-    }
-
-    @Override
     public void render(BookFormState state) {
         btnAdd.setEnabled(state.addEnabled());
+        lblStatus.setText(state.status());
+
         if (state.error() != null)
-            showError(state.error());
+            JOptionPane.showMessageDialog(this, state.error());
     }
 }
