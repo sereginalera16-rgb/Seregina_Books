@@ -2,10 +2,10 @@ package ru.gr05504;
 
 import ru.gr05504.ui.BookController;
 
-public class AddBookCommand implements Command {
+public class AddBookPresenter implements Command {
     private final BookController controller;
 
-    public AddBookCommand(BookController controller){
+    public AddBookPresenter(BookController controller){
         this.controller = controller;
     }
 

@@ -1,6 +1,6 @@
 package ru.gr05504.ui;
 
-import ru.gr05504.AddBookCommand;
+import ru.gr05504.AddBookPresenter;
 import ru.gr05504.BookFormState;
 import ru.gr05504.Command;
 import ru.gr05504.domain.Book;
@@ -24,7 +24,7 @@ public class Window extends JFrame implements BookView {
 
     public Window(BookController controller){
         this.controller = controller;
-        addCommand = new AddBookCommand(controller);
+        addCommand = new AddBookPresenter(controller);
 
         setTitle("Книги");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
