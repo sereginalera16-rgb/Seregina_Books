@@ -1,12 +1,12 @@
 package ru.gr05504.ui;
 
-public class BookPresenter {
+public class BookController {
     private final BookService service;
     private BookView view;
-    public BookPresenter(BookService service) {
+    public BookController(BookService service) {
         this.service = service;
     }
-    public void setView(BookView view) {
+    public void attachView(BookView view) {
         this.view = view;
     }
     public void addBookClicked(){

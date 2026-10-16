@@ -10,11 +10,11 @@ public class Console implements BookView {
     private String year;
     private String info;
     private Scanner scanner;
-    private final BookPresenter presenter;
+    private final BookController controller;
 
-    public Console(BookPresenter presenter){
+    public Console(BookController controller){
         scanner = new Scanner(System.in);
-        this.presenter = presenter;
+        this.controller = controller;
     }
 
 
@@ -88,6 +88,6 @@ public class Console implements BookView {
         year = scanner.nextLine();
         System.out.print("Введите допинформацию: ");
         info = scanner.nextLine();
-        presenter.addBookClicked();
+        controller.addBookClicked();
     }
 }

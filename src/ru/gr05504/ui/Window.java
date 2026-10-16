@@ -13,10 +13,10 @@ public class Window extends JFrame implements BookView {
     private JTextField tfAdditional = new JTextField();
     JButton btnAdd = new JButton("Добавить");
     private JTextArea taBooks = new JTextArea();
-    private final BookPresenter presenter;
+    private final BookController controller;
 
-    public Window(BookPresenter presenter){
-        this.presenter = presenter;
+    public Window(BookController controller){
+        this.controller = controller;
 
         setTitle("Книги");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -28,23 +28,23 @@ public class Window extends JFrame implements BookView {
         JLabel lblYear = new JLabel("Год издания:");
         JLabel lblAdditional = new JLabel("Допинформация:");
 
-        btnAdd.addActionListener(e -> {presenter.addBookClicked();});
+        btnAdd.addActionListener(e -> {controller.addBookClicked();});
         tfAuthor.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                presenter.inputChanged();
+                controller.inputChanged();
             }
         });
         tfTitle.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                presenter.inputChanged();
+                controller.inputChanged();
             }
         });
         tfYear.addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                presenter.inputChanged();
+                controller.inputChanged();
             }
         });
 
